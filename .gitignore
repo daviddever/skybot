@@ -3,6 +3,7 @@
 *.orig
 .tox/
 persist
+config
 config.json
 pep8.py
 .project
