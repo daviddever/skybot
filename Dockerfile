@@ -8,6 +8,6 @@ RUN useradd --create-home appuser
 WORKDIR /home/appuser
 USER appuser
 
-COPY * .
+COPY * ./
 
 CMD [ "python", "./bot.py" ]
