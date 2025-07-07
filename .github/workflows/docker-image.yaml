@@ -20,7 +20,7 @@ jobs:
       - name: Install runtime & test deps
         run: |
           pip install -r requirements.txt
-          pip install pytest   # no extra libs needed for upstream tests
+          pip install pytest bf mock
 
       - name: Run upstream test suite
         run: pytest -q
