@@ -20,9 +20,11 @@ jobs:
       - name: Install runtime & test deps
         run: |
           pip install -r requirements.txt
-          pip install pytest bf mock
+          pip install pytest mock
 
       - name: Run upstream test suite
+        env:
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/plugins
         run: pytest -q
         # exits non-zero if any test fails, making build job skip
 
