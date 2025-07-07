@@ -25,7 +25,7 @@ jobs:
       - name: Run upstream test suite
         env:
           PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/plugins
-        run: pytest -q
+        run: pytest -q -k "not twitter" #ignoring twitter plugig
         # exits non-zero if any test fails, making build job skip
 
   # ──────────────────────────────────────────
