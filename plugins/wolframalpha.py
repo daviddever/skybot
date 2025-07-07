@@ -2,8 +2,35 @@ from __future__ import unicode_literals
 
 from builtins import chr
 import re
+import urllib.parse
 
 from util import hook, http
+
+
+@hook.api_key("wolframalpha")
+@hook.command("who")
+@hook.command("what")
+@hook.command("where")
+@hook.command("when")
+@hook.command("why")
+@hook.command
+def ask(inp, say=None, trigger=None, nick=None, api_key=None):
+    ".ask <query> -- ask wolfram a question, get an answer"
+
+    if trigger in ["who", "what", "where", "when", "why"]:
+        inp = f"{trigger} {inp}"
+
+    base_url = "http://api.wolframalpha.com/v1/conversation.jsp"
+    query = urllib.parse.quote_plus(inp)
+    url = f"{base_url}?appid={api_key}&i={query}"
+
+    response = http.get_json(url)
+    result = response.get("result")
+
+    if not result:
+        say(f"Sorry, I do not know how to answer that {nick}.")
+
+    return result
 
 
 @hook.api_key("wolframalpha")

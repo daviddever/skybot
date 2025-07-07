@@ -1,10 +1,11 @@
-"""Weather, thanks to darksky and google geocoding."""
+"""Weather, thanks to pirateweather and google geocoding."""
 from __future__ import unicode_literals
 
 from util import hook, http
 
+
 GEOCODING_URL = "https://maps.googleapis.com/maps/api/geocode/json"
-DARKSKY_URL = "https://api.darksky.net/forecast/"
+PIRATEWEATHER_URL = "https://api.pirateweather.net/forecast/"
 
 
 def geocode_location(api_key, loc):
@@ -18,9 +19,9 @@ def geocode_location(api_key, loc):
 
 
 def get_weather_data(api_key, lat, long):
-    """Get weather data from darksky."""
+    """Get weather data from pirateweather."""
     query = "{key}/{lat},{long}".format(key=api_key, lat=lat, long=long)
-    url = DARKSKY_URL + query
+    url = PIRATEWEATHER_URL + query
     try:
         parsed_json = http.get_json(url)
     except IOError:
@@ -39,11 +40,11 @@ def mph_to_kph(mph):
     return mph * 1.609
 
 
-@hook.api_key("google", "darksky")
+@hook.api_key("google", "pirateweather")
 @hook.command(autohelp=False)
 def weather(inp, chan="", nick="", reply=None, db=None, api_key=None):
     """.weather <location> [dontsave] | @<nick> -- Get weather data."""
-    if "google" not in api_key and "darksky" not in api_key:
+    if "google" not in api_key and "pirateweather" not in api_key:
         return None
 
     # this database is used by other plugins interested in user's locations,
@@ -89,7 +90,7 @@ def weather(inp, chan="", nick="", reply=None, db=None, api_key=None):
         lat = geo["lat"]
         lng = geo["lng"]
 
-    parsed_json = get_weather_data(api_key["darksky"], lat, lng)
+    parsed_json = get_weather_data(api_key["pirateweather"], lat, lng)
     current = parsed_json.get("currently")
 
     if not current:
