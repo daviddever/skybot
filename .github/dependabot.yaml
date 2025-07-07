@@ -1,0 +1,18 @@
+version: 2
+updates:
+  # Python libs in requirements.txt
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule: { interval: "weekly", time: "03:00" }
+    groups:
+      python-deps: { patterns: ["*"] }
+
+  # Dockerfile base tag
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule: { interval: "weekly", time: "03:30" }
+
+  # GitHub Action versions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: { interval: "monthly" }

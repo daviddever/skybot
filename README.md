@@ -1,19 +1,21 @@
-Containerized fork of https://github.com/rmmh/skybot
+Containerized fork of <https://github.com/rmmh/skybot>
 
 # Skybot
 
 ## Goals
-* simplicity
-  * little boilerplate
-  *  minimal magic
-* power
-  * multithreading
-  * automatic reloading
-  * extensibility
+
+- simplicity
+  - little boilerplate
+  - minimal magic
+- power
+  - multithreading
+  - automatic reloading
+  - extensibility
 
 # Features
-* Multithreaded dispatch and the ability to connect to multiple networks at a time.
-* Easy plugin development with automatic reloading and a simple hooking API.
+
+- Multithreaded dispatch and the ability to connect to multiple networks at a time.
+- Easy plugin development with automatic reloading and a simple hooking API.
 
 ## Startup
 
@@ -25,7 +27,7 @@ Containerized fork of https://github.com/rmmh/skybot
 
 ```
   skybot:
-    image: daviddever/skybot:latest
+    image: ghcr.io/daviddever/skybot:latest
     container_name: skybot
     environment:
       - PUID=1000
@@ -37,6 +39,7 @@ Containerized fork of https://github.com/rmmh/skybot
 ```
 
 ## License
+
 Skybot is public domain. If you find a way to make money using it, I'll be very impressed.
 
 See LICENSE for precise terms.
